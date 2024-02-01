@@ -16,9 +16,9 @@ public class Ejercicio2 implements WindowListener, ActionListener
 	Label lblEtiqueta1 = new Label("Introduzca la cantidad: ");
 	Label lblEtiqueta2 = new Label("Introduzca el porcentaje: ");
 	Label lblEtiqueta3 = new Label("Resultado: ");
-	TextField txtPrimero = new TextField(15);
-	TextField txtSegundo = new TextField(15);
-	TextField txtTercero = new TextField(15);
+	TextField txtCantidad = new TextField(15);
+	TextField txtPorcentaje = new TextField(15);
+	TextField txtResultado = new TextField(15);
 	Button btnCalcular = new Button("Calcular");
 	
 	public Ejercicio2()
@@ -26,22 +26,41 @@ public class Ejercicio2 implements WindowListener, ActionListener
 		ventana.setSize(900,80);
 		ventana.setVisible(true);
 		ventana.setResizable(false);
-		ventana.addWindowListener(this);
 		ventana.setLayout(new FlowLayout());
 		ventana.setLocationRelativeTo(null);
+		// Para añadir el WindowListener
+		ventana.addWindowListener(this);
+		// Para añadir la action al botón btnCalcular
+		btnCalcular.addActionListener(this);
 		ventana.add(lblEtiqueta1);
-		ventana.add(txtPrimero);
+		ventana.add(txtCantidad);
 		ventana.add(lblEtiqueta2);
-		ventana.add(txtSegundo);
+		ventana.add(txtPorcentaje);
 		ventana.add(btnCalcular);
 		ventana.add(lblEtiqueta3);
-		ventana.add(txtTercero);
-		txtTercero.setEnabled(false);
+		ventana.add(txtResultado);
+		txtResultado.setEnabled(false);
 	}
 
 	public static void main(String[] args)
 	{
 		new Ejercicio2();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		// Cogemos los numeros escritos
+		float cantidad = Float.parseFloat(txtCantidad.getText());
+		float porcentaje = Float.parseFloat(txtPorcentaje.getText());
+
+		//Calculamos el resultado
+		float resultado = (cantidad * porcentaje)/100.0f;
+		
+		/*Mostramos el resultado
+		 * AL AÑADIR UNA CADENA VACÍA SE CONVIERTE EN STRING*/
+		txtResultado.setText(resultado+"");;
+		
 	}
 
 	@Override
@@ -54,6 +73,7 @@ public class Ejercicio2 implements WindowListener, ActionListener
 	@Override
 	public void windowClosing(WindowEvent e)
 	{
+		// Para cerrar la ventana
 		System.exit(0);
 		
 	}
@@ -90,13 +110,6 @@ public class Ejercicio2 implements WindowListener, ActionListener
 	public void windowDeactivated(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		
 		
 	}
 
